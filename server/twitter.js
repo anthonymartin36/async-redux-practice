@@ -6,9 +6,10 @@ const router = express.Router()
 
 router.use(bodyParser.json())
 
-router.get('/subreddit/:subreddit', (req, res) => {
+router.get('/nasa/:nasa', (req, res) => {
   request
-    .get(`http://www.reddit.com/r/${req.params.subreddit}.json`)
+    .get(`https://api.nasa.gov/planetary/apod`)
+    .query({api_key: "RfiS7oVXJF2afO09v2gcMEKmRw6VKlsHSI86HnoQ"})
     .end((err, result) => {
       if (err) {
         res.status(500).send(err.message)

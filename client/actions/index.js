@@ -15,6 +15,7 @@ export const receivePosts = (posts) => {
     type: RECEIVE_POSTS,
     posts: posts.map(post => post.data)
   }
+
 }
 
 export const showError = (errorMessage) => {
@@ -34,6 +35,8 @@ export function fetchPosts (subreddit) {
           dispatch(showError(err.message))
           return
         }
+        else if (res.body.length == 0) dispatch(showError('Subreddit does not exist'))
+        //console.log(receivePosts(res.body))
         dispatch(receivePosts(res.body))
       })
   }
